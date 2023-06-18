@@ -1,0 +1,21 @@
+version: '3'
+# hosting 
+services:
+  app:
+    image: dev1_app:v1
+    ports:
+      - "3000:5173"
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/apps
+
+  # testing 
+  tests:
+    image: dev1_app:v1
+
+    volumes:
+      - /usr/app/node_modules
+      - .:/app
+
+    # add test command instead , this is just for testing 
+    command: [ 'npm', 'run', 'lint' ]
